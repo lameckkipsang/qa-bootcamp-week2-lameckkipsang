@@ -5,6 +5,9 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
     "noEmit": true,
     "types": ["node"]
   },
