@@ -7,7 +7,7 @@ This is the starting point for Week 2 of the QA bootcamp. During the week you wi
 - Postman (API testing)
 - The Toolshop REST API
 
-There are no tests in this repo. You will write them during the week.
+This repo contains Week 2 TypeScript exercises in `src/` and Playwright UI tests for Toolshop in `tests/`.
 
 ## Prerequisites
 
@@ -62,7 +62,8 @@ Run these steps in order from a terminal.
 
 | Folder     | What it is for |
 |------------|----------------|
-| `tests/`   | Your Playwright tests. It is empty for now; you will add tests during the week. |
+| `src/`     | TypeScript fundamentals exercises (`ts-basics/`) and `profile-validator.ts`. |
+| `tests/`   | Playwright UI tests for Toolshop (`home.spec.ts`, `search.spec.ts`, `login.spec.ts`). |
 | `scripts/` | Helper scripts. `check.ts` checks your setup and is run by `npm run check`. |
 
 ## Scripts
@@ -74,3 +75,9 @@ Run these steps in order from a terminal.
 
 - **`src/ts-basics/`**: TypeScript fundamentals practice covering basic types (`index.ts`), tuples (`tuples.ts`), typed functions (`functions.ts`), object type aliases (`objects.ts`), and union types (`uniontypes.ts`).
 - **`src/profile-validator.ts`**: Validates nested user notification settings using optional properties (`?`), optional chaining (`?.`), and nullish coalescing (`??`) so missing fields safely default to `false` without runtime errors.
+
+## Week 2 Day 7 – Playwright UI Tests
+
+- **`tests/home.spec.ts`**: Verifies the Toolshop home page loads with the expected title (`Practice Software Testing - Toolshop - v5.0`).
+- **`tests/search.spec.ts`**: Searches for `"pliers"` and verifies all returned products include `"pliers"` in their name.
+- **`tests/login.spec.ts`**: Submits invalid login credentials and verifies the `"Invalid email or password"` error message is displayed.
