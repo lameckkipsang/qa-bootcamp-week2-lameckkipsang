@@ -3,11 +3,11 @@
 This is the starting point for Week 2 of the QA bootcamp. During the week you will use it to practise:
 
 - TypeScript
-- Playwright (UI testing)
+- Playwright (UI and API testing)
 - Postman (API testing)
 - The Toolshop REST API
 
-This repo contains Week 2 TypeScript exercises in `src/` and Playwright UI tests for Toolshop in `tests/`.
+This repo contains Week 2 TypeScript exercises in `src/`, Gherkin specifications in `features/`, Page Object Models in `pages/`, and Playwright UI and API tests for Toolshop in `tests/`.
 
 ## Prerequisites
 
@@ -19,28 +19,15 @@ Install these before you start:
 
 ## Setup
 
-Run these steps in order from a terminal.
+After cloning the repository and opening the folder, run these three steps in order from a terminal:
 
-1. Clone the repo and open the folder:
-
-   ```bash
-   git clone <repo-url>
-   cd qa-bootcamp-week2-starter
-   ```
-
-2. Install the dependencies:
+1. Install the dependencies and the Chromium browser for Playwright:
 
    ```bash
-   npm install
+   npm install && npx playwright install chromium
    ```
 
-3. Install the Chromium browser for Playwright:
-
-   ```bash
-   npx playwright install chromium
-   ```
-
-4. Copy `.env.example` to `.env`:
+2. Copy `.env.example` to `.env`:
 
    ```bash
    cp .env.example .env
@@ -48,28 +35,28 @@ Run these steps in order from a terminal.
 
    `.env` already contains the Toolshop website URL (`TOOLSHOP_URL`) and the Toolshop API URL (`TOOLSHOP_API_URL`). Only change them if your trainer gives you different URLs.
 
-5. Check that your setup works:
+3. Run the full Playwright UI and API test suite:
 
    ```bash
-   npm run check
+   npm test
    ```
-
-   This sends a GET request to the Toolshop API's `/products` endpoint (no login needed). If everything is set up correctly, it prints your Node version, the HTTP status (200), the number of products, and a last line that says `PASS`.
 
 > **Warning:** never commit `.env`. It is where your own settings and, later in the course, your secrets (keys, tokens, passwords) live. It is listed in `.gitignore` so Git ignores it. Do not remove it from there.
 
 ## Folders
 
-| Folder     | What it is for |
-|------------|----------------|
-| `src/`     | TypeScript fundamentals exercises (`ts-basics/`) and `profile-validator.ts`. |
-| `tests/`   | Playwright UI tests for Toolshop (`home.spec.ts`, `search.spec.ts`, `login.spec.ts`). |
+| Folder | What it is for |
+| --- | --- |
+| `features/` | Gherkin feature specification (`cart.feature`). |
+| `pages/` | Page Object Model classes (`HomePage.ts`). |
+| `src/` | TypeScript fundamentals exercises (`ts-basics/`) and `profile-validator.ts`. |
+| `tests/` | Playwright UI and API tests for Toolshop. |
 | `scripts/` | Helper scripts. `check.ts` checks your setup and is run by `npm run check`. |
 
 ## Scripts
 
+- `npm test`: runs all Playwright UI and API tests in `tests/`.
 - `npm run check`: checks your `.env` and that you can reach the Toolshop API.
-- `npm test`: runs the Playwright tests in `tests/`.
 
 ## Week 2 Day 6 – TypeScript Basics & Profile Validator
 
@@ -81,3 +68,18 @@ Run these steps in order from a terminal.
 - **`tests/home.spec.ts`**: Verifies the Toolshop home page loads with the expected title (`Practice Software Testing - Toolshop - v5.0`).
 - **`tests/search.spec.ts`**: Searches for `"pliers"` and verifies all returned products include `"pliers"` in their name.
 - **`tests/login.spec.ts`**: Submits invalid login credentials and verifies the `"Invalid email or password"` error message is displayed.
+
+## Week 2 Day 8 – Page Object Model, Feature File & Products API
+
+- **`pages/HomePage.ts` & `tests/search-pom.spec.ts`**: Encapsulates home page search locators and actions into a Page Object Model and verifies product search results.
+- **`tests/products-api.spec.ts`**: Sends a `GET /products` request and verifies HTTP `200` and a non-empty product list.
+- **`features/cart.feature`**: Gherkin scenarios describing the Toolshop shopping cart flow.
+
+## Week 2 Day 9 – Cart API Tests with Cleanup
+
+- **`tests/cart-create-api.spec.ts`**: Dynamically fetches a product, creates a cart, adds the product, checks the response fields, and deletes the cart in `test.afterEach`.
+- **`tests/cart-not-found-api.spec.ts`**: Requests a non-existent cart ID and checks for a `404` status response.
+
+## Notes
+
+- **Cucumber-js (Optional):** Step definitions for `features/cart.feature` were left out to prioritize full Playwright UI and API suite stability and trace verification.
