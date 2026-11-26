@@ -62,6 +62,7 @@ After cloning the repository and opening the folder, run these three steps in or
 
 - **`src/ts-basics/`**: TypeScript fundamentals practice covering basic types (`index.ts`), tuples (`tuples.ts`), typed functions (`functions.ts`), object type aliases (`objects.ts`), and union types (`uniontypes.ts`).
 - **`src/profile-validator.ts`**: Validates nested user notification settings using optional properties (`?`), optional chaining (`?.`), and nullish coalescing (`??`) so missing fields safely default to `false` without runtime errors.
+- **How to run Day 6 files:** Run `npx tsx src/profile-validator.ts` from the project root. Any file in `src/ts-basics/` runs the same way (for example, `npx tsx src/ts-basics/index.ts`).
 
 ## Week 2 Day 7 – Playwright UI Tests
 
