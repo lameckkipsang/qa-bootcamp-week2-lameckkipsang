@@ -25,6 +25,14 @@ const userWithEmptySettings: UserProfile = {
   settings: {},
 };
 
+const user4: UserProfile = {
+  id: 4,
+  username: 'David',
+  settings: {
+    notifications: false,
+  },
+};
+
 function isNotified(user: UserProfile): boolean {
   return user.settings?.notifications ?? false;
 }
@@ -32,3 +40,4 @@ function isNotified(user: UserProfile): boolean {
 console.log('User 1 (notifications set):', isNotified(userWithNotifications));
 console.log('User 2 (no settings):', isNotified(userWithoutSettings));
 console.log('User 3 (empty settings):', isNotified(userWithEmptySettings));
+console.log('User 4 (notifications explicitly false):', isNotified(user4));
