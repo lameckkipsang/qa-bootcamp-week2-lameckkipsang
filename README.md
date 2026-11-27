@@ -84,3 +84,9 @@ After cloning the repository and opening the folder, run these three steps in or
 ## Notes
 
 - **Cucumber-js (Optional):** Step definitions for `features/cart.feature` were left out to prioritize full Playwright UI and API suite stability and trace verification.
+
+## Week 2 Capstone – Search UI, Cart API & Flakiness Drill
+
+- **`tests/c1-search.spec.ts`**: Capstone Case C1 UI test using `pages/HomePage.ts` to search for `"pliers"`, verify the search heading, and assert every returned product title matches the query.
+- **`tests/c4-cart-api.spec.ts`**: Capstone Case C4 API test that fetches a live product from `GET /products`, creates a cart with `POST /carts`, adds the item with `POST /carts/{id}`, verifies the saved product ID and quantity via `GET /carts/{id}`, and cleans up with `DELETE /carts/{id}` in `test.afterEach`.
+- **`tests/drill/flaky-save.spec.ts` & `tests/drill/index.html`**: Flakiness drill page and stabilized Playwright test using web-first `toHaveText('Saved')` assertions instead of fixed waits (`npx playwright test tests/drill/flaky-save.spec.ts --repeat-each=20`).
