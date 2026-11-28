@@ -4,9 +4,9 @@ export class HomePage {
   private readonly page: Page;
   private readonly searchInput: Locator;
   private readonly searchButton: Locator;
-  readonly searchCaption: Locator;
-  readonly searchResults: Locator;
-  readonly productNames: Locator;
+  private readonly searchCaption: Locator;
+  private readonly searchResults: Locator;
+  private readonly productNames: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -24,7 +24,14 @@ export class HomePage {
   async searchFor(term: string) {
     await this.searchInput.fill(term);
     await this.searchButton.click();
-    await this.searchResults.waitFor({ state: 'visible' });
+  }
+
+  async getSearchCaptionText(): Promise<string> {
+    return (await this.searchCaption.textContent()) ?? '';
+  }
+
+  get resultsLocator(): Locator {
+    return this.searchResults;
   }
 
   async getProductNames(): Promise<string[]> {
